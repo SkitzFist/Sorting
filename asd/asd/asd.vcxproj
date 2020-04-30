@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{AC493B2C-5636-46D5-915F-9BBB4DD4CA53}</ProjectGuid>
-    <RootNamespace>Sorting</RootNamespace>
+    <ProjectGuid>{46A45699-F432-485E-88F1-BDEC95F6390F}</ProjectGuid>
+    <RootNamespace>asd</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -138,11 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="SortingFunctions.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="SortingFunctions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
