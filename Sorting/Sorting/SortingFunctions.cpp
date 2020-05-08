@@ -1,5 +1,8 @@
 #include "SortingFunctions.hpp"
 
+//debug
+#include <iostream>
+
 void SortingFunctions::mergeSort(std::vector<int>& vec)
 {
 	int size = static_cast<int>(vec.size());
@@ -10,6 +13,12 @@ void SortingFunctions::quickSort(std::vector<int>& vec)
 {
 	int max = static_cast<int>(vec.size()) - 1;
 	quickSort(vec, 0, max);
+}
+
+void SortingFunctions::heapSort(std::vector<int>& vec)
+{
+	int size = static_cast<int>(vec.size());
+	heapSort(vec, size - 1);
 }
 
 void SortingFunctions::mergeSort(std::vector<int>& vec, int low, int high)
@@ -94,6 +103,72 @@ void SortingFunctions::quickSort(std::vector<int>& vec, int min, int max)
 	}
 }
 
+void SortingFunctions::heapSort(std::vector<int>& vec, int lastIndex)
+{
+	if (lastIndex < 0 ) {
+		return;
+	}
+
+	int size = vec.size();
+	
+	for (int i = (size / 2) - 1; i >= 0; --i) {
+		balance(vec, i, size);
+	}
+
+	while (lastIndex > 0) {
+		swap(&vec[0], &vec[lastIndex]);
+		--lastIndex;
+		balance(vec, ROOT, lastIndex);
+	}
+
+
+	//heapSort(vec, lastIndex);
+}
+
+void SortingFunctions::balance(std::vector<int>& vec, int index, int lastIndex)
+{
+	int left = getLeft(index);
+	int right = getRight(index);
+	int largest = index;
+	
+	if (left < lastIndex && vec[index] < vec[left] ) {
+		largest = left;
+	}
+	if (right < lastIndex && vec[largest] < vec[right] ) {
+		largest = right;
+	}
+
+	if (largest != index) {
+		swap(&vec[index], &vec[largest]);
+		balance(vec, largest, lastIndex);
+	}
+
+}
+
+inline int SortingFunctions::getParent(int index)
+{
+	return (index - 1) / 2;
+}
+
+inline int SortingFunctions::getLeft(int index)
+{
+
+	return (index*2) +1;
+}
+
+inline int SortingFunctions::getRight(int index)
+{
+
+	return (index * 2) + 2;
+}
+
+
+
+#pragma region ThreadPool
+
+
+/*Jag lyckades inte lista ut hur jag skulle bygga thread poolen för att skicka med argument.
+  har ni/du något tips på litteratur, etc. där jag kan lära mig mer om thread pooling?*/
 ThreadPool::ThreadPool(size_t numOfThreads)
 {
 	shouldStop = false;
@@ -151,3 +226,13 @@ void ThreadPool::stop()
 		threads[i].join();
 	}
 }
+
+
+//experiment
+
+
+
+
+#pragma endregion
+
+

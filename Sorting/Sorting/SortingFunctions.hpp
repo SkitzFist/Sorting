@@ -32,8 +32,8 @@ class SortingFunctions {
 public:
 	void mergeSort(std::vector<int>& vec);
 	void quickSort(std::vector<int>& vec);
+	void heapSort(std::vector<int>& vec);
 private:
-	ThreadPool pool;
 	//merge sort
 	void mergeSort(std::vector<int>& vec, int low, int high);
 	void merge(std::vector<int>&, int low, int mid, int high);
@@ -42,4 +42,13 @@ private:
 	void swap(int* a, int* b);
 	int partition(std::vector<int>& vec, int min, int max);
 	void quickSort(std::vector<int>& vec, int min, int max);
+
+	//HeapSort
+	const int ROOT = 0;
+	void heapSort(std::vector<int>& vec, int lastIndex);
+	void balance(std::vector<int>& vec,int index, int lastIndex);
+	inline int getParent(int index);
+	inline int getLeft(int index);
+	inline int getRight(int index);
+
 };

@@ -5,7 +5,6 @@
 #include <chrono>
 #include "SortingFunctions.hpp"
 
-
 void print(const std::vector<int>& vec) {
 	for (size_t i = 0; i < vec.size(); ++i) {
 		std::cout << vec[i] << "  ";
@@ -26,7 +25,7 @@ std::vector<int> ReadValuesFromFile(const std::string& filepath)
 
 void WriteValuesToFile(const std::vector<int>& numbers, const std::string& filepath = "../Data/Output.txt")
 {
-	std::ofstream file(filepath, std::ios_base::trunc);
+	std::ofstream file(filepath, std::ios_base::trunc); //lade till trunc för att rensa output filen
 
 	for(std::vector<int>::size_type i = 0; i < numbers.size() - 1; ++i)
 		file << numbers[i] << std::endl;
@@ -44,9 +43,18 @@ int main(int argc, char** argv)
 	SortingFunctions sort;
 	std::vector<int> numbers = ReadValuesFromFile("../Data/1000000(0,10000000).txt");
 
+
+	std::vector<int> num;
+	int size = 100;
+	num.reserve(size);
+	for (int i = 0; i < size; ++i) {
+		num.emplace_back(rand() & 150);
+	}
 	auto start = std::chrono::steady_clock::now();
 
-	sort.quickSort(numbers);
+
+
+	sort.heapSort(numbers);
 
 	//switch (argv[2][0])
 	//{
@@ -70,8 +78,11 @@ int main(int argc, char** argv)
 	auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
 	std::cout << "Sorting took: " << elapsed_seconds.count() << " seconds" << std::endl;
-	
 	WriteValuesToFile(numbers);
+
+
+
+	std::cout << "Done writing to file";
 	//WriteValuesToFile(numbers, argv[3]);
 
 	return 0;
