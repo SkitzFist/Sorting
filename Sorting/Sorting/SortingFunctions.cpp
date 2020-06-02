@@ -109,7 +109,7 @@ void SortingFunctions::heapSort(std::vector<int>& vec, int lastIndex)
 		return;
 	}
 
-	int size = vec.size();
+	int size = static_cast<int>(vec.size());
 	
 	for (int i = (size / 2) - 1; i >= 0; --i) {
 		balance(vec, i, size);
@@ -131,7 +131,7 @@ void SortingFunctions::balance(std::vector<int>& vec, int index, int lastIndex)
 	int right = getRight(index);
 	int largest = index;
 	
-	if (left < lastIndex && vec[index] < vec[left] ) {
+	if (left <= lastIndex && vec[index] <= vec[left] ) {
 		largest = left;
 	}
 	if (right < lastIndex && vec[largest] < vec[right] ) {
@@ -226,13 +226,6 @@ void ThreadPool::stop()
 		threads[i].join();
 	}
 }
-
-
-//experiment
-
-
-
-
 #pragma endregion
 
 
